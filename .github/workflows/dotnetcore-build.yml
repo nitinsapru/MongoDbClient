@@ -19,5 +19,9 @@ jobs:
       uses: actions/upload-artifact@v1.0.0
       with:
         name: MongoDBClient
-        path: ./MongoDB/bin/
+        path: ./MongoDB/bin/Release/
+    - name: Publish Nuget
+      uses: rohith/publish-nuget@v2.0.0
+      with:
+        PROJECT_FILE_PATH: ./MongoDB/MongoDB.csproj
       
