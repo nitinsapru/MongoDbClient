@@ -21,8 +21,4 @@ jobs:
         name: MongoDBClient
         path: ./MongoDB/bin/Release/
     - name: Publish Nuget
-      uses: rohith/publish-nuget@v2.0.0
-      with:
-        PROJECT_FILE_PATH: ./MongoDB/MongoDB.csproj
-        NUGET_KEY: oy2m6rtzddkqjxxw5h5a2m6w5os3mdouzbuwtipcthofxe
-      
+      run: dotnet nuget push "bin/Release/MongoDbClient.1.0.0.nupkg" --source "github"
