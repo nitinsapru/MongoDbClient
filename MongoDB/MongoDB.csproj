@@ -2,6 +2,17 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Version>1.0.1</Version>
+    <Company>https://github.com/saprunitin/</Company>
+    <Product>MongoDbClient</Product>
+    <PackageId>MongoDbClient</PackageId>
+    <Description>Provides methods, interfaces &amp; clients to build connection &amp; conduct operations on MongoDB databases.</Description>
+    <Copyright>Nitin Sapru (https://github.com/saprunitin/)</Copyright>
+    <RepositoryUrl>https://github.com/saprunitin/MongoDbClient</RepositoryUrl>
+    <RepositoryType>Public</RepositoryType>
+    <PackageTags>MongoDb</PackageTags>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <ItemGroup>
