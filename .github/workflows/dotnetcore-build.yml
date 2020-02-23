@@ -16,9 +16,9 @@ jobs:
     - name: Build with dotnet
       run: dotnet build --configuration Release
     
-    - name: Setup Nuget.exe
-      uses: warrenbuckley/Setup-Nuget@v1
+    - name: Pack with dotnet
+      run: dotnet pack
     
-    - name: Nuget Push
-      run: nuget push *.nupkg
+    - name: Publish to nuget.org
+      run: dotnet nuget push MongoDbClient.1.0.1.nupkg -k oy2m6rtzddkqjxxw5h5a2m6w5os3mdouzbuwtipcthofxe -s https://api.nuget.org/v3/index.json
       
