@@ -34,14 +34,8 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
-- task: NuGetAuthenticate@0
+- task: PublishBuildArtifacts@1
   inputs:
-    nuGetServiceConnections: 'Nuget-MongoDb'
-    forceReinstallCredentialProvider: true
-
-- task: NuGetCommand@2
-  inputs:
-    command: 'push'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
-    nuGetFeedType: 'external'
-    publishFeedCredentials: 'Nuget-MongoDb'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'MongoDbServiceClient'
+    publishLocation: 'Container'
