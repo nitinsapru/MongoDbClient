@@ -20,5 +20,4 @@ jobs:
       with:
         name: MongoDBClient
         path: ./MongoDB/bin/Release/
-    - name: Publish Nuget
-      run: dotnet nuget push "bin/Release/MongoDbClient.1.0.0.nupkg" --source "github"
+
