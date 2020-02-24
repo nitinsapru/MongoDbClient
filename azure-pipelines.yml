@@ -34,10 +34,10 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
-
 - task: NuGetAuthenticate@0
   inputs:
     nuGetServiceConnections: 'Nuget-MongoDb'
+    forceReinstallCredentialProvider: true
 
 - task: NuGetCommand@2
   inputs:
