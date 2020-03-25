@@ -18,6 +18,13 @@ variables:
 steps:
 - task: NuGetToolInstaller@1
 
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'restore'
+    feedsToUse: 'select'
+    vstsFeed: '0b73b55f-bb83-4ddd-aa65-370f2f6d6bf5/cf1e96e7-b86e-4999-bf73-eabea095f626'
+    noCache: true
+
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '$(solution)'
