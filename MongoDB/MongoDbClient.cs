@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using MongoDB.Bson;
 using MongoDB.Contracts;
 using MongoDB.Driver;
 using MongoDB.Exceptions;
@@ -12,6 +11,10 @@ namespace MongoDB
     {
         private readonly MongoClient mongoDB;
 
+        /// <summary>
+        ///     Initializes the class of type <see cref="MongoDbClient"/>.
+        /// </summary>
+        /// <param name="connectionString"></param>
         public MongoDbClient(string connectionString)
         {
             connectionString.ShouldNotBeNullOrEmpty();
@@ -130,6 +133,29 @@ namespace MongoDB
             try
             {
                 return await mongoCollection.Find(filter).ToListAsync().ConfigureAwait(false);
+            }
+            catch (Exception ex)
+            {
+                throw new MongoDbClientException(ex);
+            }
+        }
+
+        /// <summary>
+        ///     Inserts bulk documents into MongoDB collection.
+        /// </summary>
+        /// <typeparam name="T">The type of the document used in current transaction.</typeparam>
+        /// <param name="mongoCollection">The mongo DB collection.</param>
+        /// <param name="documents">The list of documents.</param>
+        /// <returns>The count which lets the caller know, how many documents have been inserted into specified collection.</returns>
+        public async Task<int> AddDocumentsToCollection<T>(IMongoCollection<T> mongoCollection, IList<T> documents)
+        {
+            mongoCollection.ShouldNotBeNull();
+            documents.ShouldNotBeNull();
+
+            try
+            {
+                await mongoCollection.InsertManyAsync(documents).ConfigureAwait(false);
+                return documents.Count;
             }
             catch (Exception ex)
             {

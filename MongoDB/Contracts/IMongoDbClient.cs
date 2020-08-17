@@ -52,5 +52,14 @@ namespace MongoDB.Contracts
         /// <param name="filter"></param>
         /// <returns></returns>
         Task<IEnumerable<T>> ListDocumentsFromCollection<T>(IMongoCollection<T> mongoCollection, FilterDefinition<T> filter);
+
+        /// <summary>
+        ///     Inserts bulk documents into MongoDB collection.
+        /// </summary>
+        /// <typeparam name="T">The type of the document used in current transaction.</typeparam>
+        /// <param name="mongoCollection">The mongo DB collection.</param>
+        /// <param name="documents">The list of documents.</param>
+        /// <returns>The count which lets the caller know, how many documents have been inserted into specified collection.</returns>
+        Task<int> AddDocumentsToCollection<T>(IMongoCollection<T> mongoCollection, IList<T> documents);
     }
 }
