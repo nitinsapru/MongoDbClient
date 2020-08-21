@@ -69,6 +69,6 @@ namespace MongoDB.Contracts
         /// <param name="collectionName">The collection name.</param>
         /// <param name="databaseName">The database name.</param>
         /// <returns>The created mongoDB collection if it is newly created or returns the existing mongoDB collection.</returns>
-        Task<IMongoCollection<T>> CreateIfNotExists<T>(string collectionName, string databaseName);
+        Task<IMongoCollection<T>> CreateCollectionIfNotExists<T>(string collectionName, string databaseName);
     }
 }
