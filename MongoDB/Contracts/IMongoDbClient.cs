@@ -61,5 +61,14 @@ namespace MongoDB.Contracts
         /// <param name="documents">The list of documents.</param>
         /// <returns>The count which lets the caller know, how many documents have been inserted into specified collection.</returns>
         Task<int> AddDocumentsToCollection<T>(IMongoCollection<T> mongoCollection, IList<T> documents);
+
+        /// <summary>
+        ///     Creates a collection in a database if it does not exist.
+        /// </summary>
+        /// <typeparam name="T">The type of the document used in current transaction.</typeparam>
+        /// <param name="collectionName">The collection name.</param>
+        /// <param name="databaseName">The database name.</param>
+        /// <returns>The created mongoDB collection if it is newly created or returns the existing mongoDB collection.</returns>
+        Task<IMongoCollection<T>> CreateIfNotExists<T>(string collectionName, string databaseName);
     }
 }

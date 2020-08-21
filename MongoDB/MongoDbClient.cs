@@ -162,5 +162,36 @@ namespace MongoDB
                 throw new MongoDbClientException(ex);
             }
         }
+
+        /// <summary>
+        ///     Creates a collection in a database if it does not exist.
+        /// </summary>
+        /// <typeparam name="T">The type of the document used in current transaction.</typeparam>
+        /// <param name="collectionName">The collection name.</param>
+        /// <param name="databaseName">The database name.</param>
+        /// <returns>The created mongoDB collection if it is newly created or returns the existing mongoDB collection.</returns>
+        public async Task<IMongoCollection<T>> CreateCollectionIfNotExists<T>(string collectionName, string databaseName)
+        {
+            try
+            {
+                var database = mongoDB.GetDatabase(databaseName);
+
+                var collection = database.GetCollection<T>(collectionName);
+
+                if(collection != null)
+                {
+                    return collection;
+                }
+
+                await database.CreateCollectionAsync(collectionName).ConfigureAwait(false);
+
+                return database.GetCollection<T>(collectionName);
+            }
+            catch(Exception ex)
+            {
+                throw new MongoDbClientException($"Failed to create mongoDB collection in database {databaseName}", ex);
+            }
+
+        }
     }
 }

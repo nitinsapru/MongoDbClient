@@ -12,7 +12,7 @@
     <RepositoryType>Public</RepositoryType>
     <PackageTags>MongoDb</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,3 +21,4 @@
   </ItemGroup>
 
 </Project>
+  
